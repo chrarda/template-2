@@ -1,0 +1,973 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*css3*/
+    /*le padding et le boordr n'agissent pas sur le width*/
+}
+
+body {
+    height: 5000px;
+    perspective: 600px;
+    font-family: "PT Sans", "sans-serf";
+    background-color: #fff;
+}
+
+:root {
+    --mainColor: #7B5244;
+    --subColor: #333;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/*general*/
+.sectionPadding {
+    padding: 40px 0 40px 0;
+}
+
+/*header*/
+
+header {
+    padding: 30px 0;
+
+}
+
+header .headerContent {
+
+    display: flex;
+    /*Donne le même height à tout les éléments*/
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.headerContent ul li {
+    display: inline-block;
+}
+
+.headerContent .navBar ul li .link-items,
+.headerContent .login ul li {
+    text-decoration: none;
+    color: var(--subColor);
+    font-weight: bold;
+}
+
+.headerContent .navBar ul li .link-items,
+.login ul li {
+    text-transform: capitalize;
+}
+
+.headerContent .navBar ul li .link-items {
+    padding: 10px 18px;
+    position: relative;
+    /*père*/
+
+}
+
+.headerContent .navBar ul li .link-items:before {
+    position: absolute;
+    border-width: 0 2px;
+    border-style: solid;
+    border-color: var(--mainColor);
+    width: 98%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: content 0.2s;
+}
+
+.headerContent .navBar ul li .link-items:hover:before {
+    content: "";
+    transition: content 0.2s;
+    transition-delay: 4s;
+}
+
+/*-------------------------------effet sur les li du navbar-------------------*/
+.headerContent .navBar .listUnstyled li .link-items:before {
+    border-width: 0 2px;
+    /*pas de bordures du haut et du bas et une bordure de 2px 
+                            à droite et à gauche*/
+    height: 100%;
+    /*heuteur de l'élément*/
+    width: 97%;
+    /*largeur de l'élément*/
+    transform: scale3d(1, 0, 1);
+}
+
+.headerContent .navBar .listUnstyled li .link-items:before,
+.headerContent .navBar .listUnstyled li .link-items:after {
+    position: absolute;
+    /*enfent*/
+    content: "";
+    /*obligatoire*/
+    border-style: solid;
+    color: var(--mainColor);
+    top: 0;
+    /*ou commence l'apparition de l'élément*/
+    left: 0;
+    /*ou commence l'apparition de l'élément*/
+    transition: transform 0.2s;
+}
+
+.headerContent .navBar .listUnstyled li .link-items:hover:before {
+    transform: scale3d(1, 1, 1);
+}
+
+.headerContent .navBar .listUnstyled li .link-items:after {
+    border-width: 2px 0;
+    /*bordures de 2px du haut et du bas */
+    height: 90%;
+    /*heuteur de l'élément*/
+    width: 100%;
+    /*largeur de l'élément*/
+    transform: scale3d(0, 1, 1);
+    transform-origin: left;
+    /*deplacement des lignes(haut et bas) de la bordures 
+   de la bordure du gauche vers la droite*/
+}
+
+.headerContent .navBar .listUnstyled li .link-items:hover:after {
+    transform: scale3d(1, 1, 1);
+    transition-delay: 0.2s;
+}
+
+/*drop-down*/
+.dropDown {
+    /*li*/
+    position: relative;
+}
+
+.dropDownMenu {
+    /*div*/
+    margin-top: 39px;
+    background-color: #fff;
+    border: 2px solid var(--mainColor);
+    width: 510px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    /* opacity: 0; */
+    visibility: hidden;
+    transform: scale(0);
+    transition: transform 0.5s, visibility 0.5s
+}
+
+.dropDown:hover .dropDownMenu {
+    transform: scale(1);
+    visibility: visible;
+    /* opacity: 1; disparition instantanée */
+
+}
+
+.dropDownMenu ul {
+    /* display: table-cell; */
+}
+
+.dropDownMenu ul li {
+    display: flex;
+    padding: 8px;
+}
+
+.dropDownMenu ul li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: rgb(141, 139, 139);
+}
+
+.dropDownMenu ul li:first-child a {
+    font-size: 13px;
+    color: grey;
+    padding: 0 105Px 10px 0;
+    border-bottom: 0.1px solid rgb(141, 139, 139);
+}
+
+/*le duexième dropdown*/
+.dropDown2 {
+    position: relative;
+}
+
+.dropDown2Div {
+    position: absolute;
+    margin-top: 39px;
+    padding: 10px;
+    width: 180px;
+    background-color: #fff;
+    border: 2px solid var(--mainColor);
+    transform: scale(0);
+    /*caché l'élément*/
+    visibility: hidden;
+    /*caché l'élément*/
+    transition: transform 0.5s, visibility 0.5s;
+    /*transition*/
+}
+
+.dropDown2:hover .dropDown2Div {
+    transform: scale(1);
+    /*afficher l'élément */
+    visibility: visible;
+    /*afficher l'élément */
+
+}
+
+.dropDown2Div ul li {
+    display: flex;
+    color: var(--subColor);
+}
+
+.dropDown2Div ul li a,
+.dropDown3Div ul li a {
+    color: grey;
+    text-decoration: none;
+    line-height: 30px;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.dropDown2Div ul li a:hover {
+    color: var(--mainColor);
+}
+
+/*Le troisième dropdawn*/
+.dropDown3 {
+    position: relative;
+}
+
+.dropDown3Div {
+    right: 0;
+    /*commence de la  droite par rapport au parent*/
+    position: absolute;
+    margin-top: 39px;
+    padding: 10px;
+    width: 180px;
+    background-color: #fff;
+    border: 2px solid var(--mainColor);
+    transform: scale(0);
+    visibility: hidden;
+    transition: transform 0.7s, visibility 0.7s;
+}
+
+.dropDown3:hover .dropDown3Div {
+    transform: scale(1);
+    visibility: visible;
+    z-index: 1;
+
+}
+
+.dropDown3Div ul li {
+    display: flex;
+
+}
+
+.dropDown3Div ul li a:hover {
+    color: var(--mainColor)
+}
+
+/* fin Le troisième dropdawn*/
+
+
+
+/*-------------------------------fin effet sur les li du navbar-------------------*/
+.headerContent .login ul li i {
+    margin: 0px 10px
+}
+
+.headerContent .login ul li i {
+    margin: 0px 11px;
+}
+
+.headerContent .login ul li:last-child i {
+    position: relative;
+}
+
+.headerContent .login ul li:last-child i:after {
+    position: absolute;
+    content: "0";
+    background-color: var(--mainColor);
+    padding: 4px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    bottom: 0;
+    right: -1px;
+}
+
+.slider .container img {
+    width: 100%;
+
+}
+
+/*fin header*/
+/*les deux points et leurs effets*/
+.cercle {
+    margin-top: -40px;
+    left: 50%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    transform: scale(0);
+    visibility: hidden;
+    transition: transform 0.5s, visibility 0.5s;
+}
+
+.slider:hover .cercle {
+    transform: scale(1);
+    visibility: visible;
+    z-index: 1;
+}
+
+.cercle .cercle1,
+.cercle2 {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: inline-block;
+}
+
+.cercle .cercle1 {
+    background-color: #fff;
+}
+
+.cercle .cercle2 {
+    background-color: black;
+}
+
+/*fin deuxpoints*/
+/*section category*/
+.sectionHeader {
+    text-align: center;
+
+}
+
+.sectionHeader .sectionTitle {
+    font-size: 34px;
+
+}
+
+.sectionHeader .line {
+    display: block;
+    width: 70px;
+    height: 2px;
+    background-color: gray;
+    margin: 10px auto;
+    transition: width 0.2s;
+}
+
+.sectionHeader:hover .line {
+    width: 90px;
+}
+
+.listUnstyled {
+    list-style: none;
+}
+
+.listUnstyled li {
+    list-style-type: none;
+}
+
+
+.listUnstyled a {
+    text-decoration: none;
+    color: #444;
+
+    text-transform: capitalize;
+    background: transparent;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 10px 25px;
+    text-align: center;
+    letter-spacing: 0.6px;
+
+}
+
+/*categoryItems*/
+.categoryItems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*4lignes du même width*/
+    grid-gap: 15px;
+    /*pour avoir des espaces entres les images
+     + un width de 100% des enfents*/
+}
+
+.categoryItem {
+    position: relative;
+}
+
+.categoryItem img {
+    /* width: 90%; pour avoir des espaces entres les images  */
+    width: 100%;
+}
+
+/*effet sur categoryItem*/
+.categoryItem:hover img {
+    box-shadow: inset 0 0 2em rgb(0, 238, 255), 0 0 0.8em blue;
+}
+
+.categoryItem .itemSubTitle {
+    margin-top: 20px;
+    color: gray;
+}
+
+.categoryItem .itemTitle {
+    font-size: 20px;
+}
+
+.categoryItem .icon {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    bottom: 0;
+    right: 0;
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    background-color: var(--mainColor);
+    transition: background-color 0.5s;
+    /* opacity: 0;  
+  visibility: hidden; */
+    transform: scale(0);
+    /*soit cette ligne ou bien les deux en haut*/
+    transition: transform 0.5s;
+
+}
+
+/*apparition des icônes*/
+.categoryItem:hover .icon {
+    /* opacity: 1;
+  visibility: visible; */
+    transform: scale(1);
+    /*soit cette ligne ou bien les deux en hau */
+}
+
+/*effet sur les icônes*/
+.categoryItem .icon:hover {
+    background-color: black;
+}
+
+.cercleVisible {
+    transform: scale(1);
+    visibility: visible;
+    margin: auto;
+
+}
+
+.cercleVisible .cercle1 {
+    background-color: var(--mainColor);
+}
+
+.cercleVisible .cercle1:hover {
+    background-color: black;
+}
+
+/*section discount*/
+.discount {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.discount .desc {
+    flex: 2;
+    background-color: #f7f3ef;
+    position: relative;
+}
+
+.discount .desc .top i {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 50px;
+    color: var(--mainColor);
+}
+
+.discount .desc .top h2 {
+    position: absolute;
+    top: 33px;
+    left: 86px;
+    font-size: 17px;
+}
+
+.discount .desc .top span {
+    position: absolute;
+    top: 55px;
+    left: 88px;
+    font-size: 17px;
+}
+
+.discount .desc p {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    line-height: 250%;
+    font-weight: normal;
+    color: #9D9C9B;
+}
+
+.discount .desc .lignes {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    display: flex;
+    width: 210px;
+}
+
+.discount .desc .lignes hr {
+    margin: 10px;
+    width: 40%;
+}
+
+.discount .ima {
+    flex: 1;
+
+    perspective: 800px;
+    perspective-origin: 150% 150%;
+
+}
+
+.discount .ima img {
+    transform: scale(1);
+    max-width: 100%;
+    transition: all 500ms ease 0s;
+    vertical-align: middle;
+    border: 0;
+    position: relative;
+    background-size: cover;
+    width: 308px;
+    height: 323px;
+    transition: transform 0.5s;
+}
+
+.discount .ima img:hover {
+    /* transform: scale(1.1); */
+    transform: translateZ(4px)
+}
+
+.discount .ima h3 {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    color: var(--mainColor);
+    font-weight: normal;
+}
+
+.discount .ima h2 {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    font-size: 20px;
+}
+
+.discount .ima1 {
+    position: relative;
+    margin: 0 20px 0 20px;
+}
+
+.discount .ima2 {
+    position: relative;
+}
+
+/*sprites*/
+.sprites {
+    margin-top: 82px;
+    margin-bottom: 60px;
+    display: flex;
+
+    /* justify-content: space-between; */
+}
+
+/*chaque item contient une image,un titre et span*/
+.sprites .spriteItem {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #EEEEEE;
+    /*tracer un trait à droite de chaque item*/
+}
+
+.sprites .spriteItem .spriteInfo span {
+    color: #888888;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+}
+
+.sprites .spriteItem .spriteInfo h3 {
+    margin-bottom: 5px;
+    line-height: 15px;
+    letter-spacing: 0.8px;
+    padding-bottom: 3px;
+}
+
+.sprites .spriteItem:last-child {
+    border-right: 0;
+    /*pas de trait à droite du dernier item*/
+}
+
+.spriteIcon {
+    background-image: url(/images/service-icon.png);
+    /*on charge une seule image
+     et suivant la position on choisit l'image desirée */
+    background-repeat: no-repeat;
+    height: 50px;
+    transition: 0.2s;
+}
+
+.spI1 {
+    background-position: center -1px;
+    /*background-position:x y*/
+
+}
+
+.spI2 {
+    background-position: center -185px;
+}
+
+.spI3 {
+    background-position: center -555px;
+}
+
+.spI4 {
+    background-position: center -370px;
+}
+
+.spI5 {
+    background-position: center -740px;
+}
+
+.spriteItem:hover .spI1 {
+    background-position: center -93px
+}
+
+.spriteItem:hover .spI2 {
+    background-position: center -277px;
+}
+
+.spriteItem:hover .spI3 {
+    background-position: center -645px;
+}
+
+.spriteItem:hover .spI4 {
+    background-position: center -460px;
+}
+
+.spriteItem:hover .spI5 {
+    background-position: center -828px;
+}
+
+/*fin sprites*/
+/*products*/
+.liste {
+    margin-top: 30px;
+}
+
+.liste ul {
+    display: flex;
+    justify-content: center;
+}
+
+.liste ul a {
+    font-weight: bold;
+}
+
+.calqueicons ul li {
+    list-style-type: none;
+}
+
+.productsItems {
+    display: flex;
+    margin-top: 60px;
+
+}
+
+.productsItem {
+    flex: 1;
+}
+
+.productsItemImage {
+    position: relative;
+}
+
+.productsItemCalque {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+
+}
+
+.productsItem:hover .productsItemCalque {
+    transform: scaleX(1);
+
+}
+
+.productsItemCalque ul {
+    /* display: flex;
+    justify-content: space-around;  Methode2*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.productsItemCalque ul li {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    /* margin: 0 2px; Methode 2*/
+    display: inline-block;
+    /*Methode1*/
+    text-align: center;
+
+}
+
+.productsItemCalque ul li i {
+    color: #fff;
+    line-height: 40px;
+}
+
+.productInfo i {
+    color: gray;
+    margin-top: 12px;
+}
+
+.productInfo i.active {
+    color: #FFB700;
+}
+
+.productInfo span {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/*fin Product*/
+/*section BannierVideo*/
+.bannierVideoItems {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 20px;
+}
+
+.BannierVideo img {
+    width: 400px;
+    margin: 0px 10px;
+}
+
+.bannierVideoItems .description {
+    background-color: #F7F3EF;
+    padding: 70px 30px 30px 40px;
+    position: relative;
+}
+
+.bannierVideoItems .description .numeroSpan {
+    position: absolute;
+    top: 20px;
+    color: var(--mainColor);
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.bannierVideoItems .description h4 {
+    position: absolute;
+    top: 40px;
+    left: 136px;
+}
+
+.bannierVideoItems .description .dateSpan {
+    color: var(--mainColor);
+}
+
+.bannierVideoItems .description p {
+    padding: 20px 0;
+    color: #A7A6A5;
+}
+
+.bannierVideoItems .description .divLignes {
+    position: absolute;
+    bottom: 80px;
+    right: 60px;
+}
+
+.divLignes .color {
+    background-color: var(--mainColor);
+}
+
+.descriptionLigne {
+    height: 2px;
+    width: 60px;
+    margin: 0px 5px;
+    background-color: black;
+    display: inline-block;
+}
+
+.clients .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*footer*/
+footer {
+    background-color: black;
+}
+
+footer .items {
+
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 2fr;
+    grid-column-gap: 100px;
+    color: blanchedalmond;
+    padding: 70px 70px 0 0px;
+    justify-content: center;
+}
+
+footer .items .logo {
+    margin-left: 70px;
+
+}
+
+footer .items .item {
+    width: 150px;
+}
+
+footer .items .logo p {
+    width: 400px;
+    line-height: 30px;
+    padding: 40px 0;
+}
+
+footer .items .logo .images {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+}
+
+footer .items ul {
+    margin-top: 30px;
+    line-height: 30px;
+}
+
+.subscribeNow {
+    position: relative;
+}
+
+.subscribeNow input {
+    margin-top: 70px;
+    border: none;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.subscribeNow input:focus {
+
+    border: 0;
+}
+
+.subscribeNow i {
+    top: 45px;
+    left: 220px;
+    position: relative;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.subscribeNow .input {
+    display: flex;
+    height: 70px;
+}
+
+.subscribeNow .trait {
+    top: 0;
+    left: 0;
+    height: 1px;
+    background-color: gray;
+    width: 250px;
+    position: relative;
+}
+
+.socialBlock {
+    margin-top: 5px;
+    width: 300px;
+    background-color: darkmagenta;
+
+}
+
+.subscribeNow ul {
+    top: 70px;
+    text-align: left;
+    position: absolute;
+    width: 300px;
+}
+
+.subscribeNow li {
+    display: inline-block;
+
+}
+
+.subscribeNow li i {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.subscribeNow li i {
+    line-height: 40px;
+}
+
+.trait1 {
+    margin-top: 60px;
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 25px;
+}
+
+footer span {
+    margin: 40px;
+    color: #6C6C6C;
+    font-size: 15px;
+    font-weight: normal;
+    margin-left: 66px;
+    position: relative;
+}
+footer .blockPaiement{
+    position: relative;
+    margin-top: 5px;
+    height: 50px;
+}
+footer .paiement {
+   
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    
+}
+footer .paiement ul {
+    
+    top: 0;
+    right: 10px;
+  
+}
+
+footer .paiement li {
+    display: inline-block;
+}
+
+footer .paiement li i {
+    display: block;
+    margin: 5px;
+    background-color: ivory;
+}
