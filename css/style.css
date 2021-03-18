@@ -948,16 +948,16 @@ footer .blockPaiement{
     height: 50px;
 }
 footer .paiement {
-   
+    padding: 5px;
     width: 200px;
     position: absolute;
-    top: 0;
+    top: -10px;
     right: 10px;
     
 }
 footer .paiement ul {
     right: 10px;
-    top: 0;
+   
     
   
 }
